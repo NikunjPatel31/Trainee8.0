@@ -21,10 +21,7 @@ public class Server extends AbstractVerticle
     server.requestHandler(request ->
       {
         request.response().putHeader("Content-Length", "5000").write("This is message 1");
-        request.response().putHeader("Content-Length", "5000").write("This is message 2");
-        request.response().putHeader("Content-Length", "5000").write("This is message 3");
-        request.response().putHeader("Content-Length", "5000").write("This is message 4");
-        request.response().putHeader("Content-Length", "5000").write("This is message 5");
+        request.response().end();
 
         request.handler(buffer -> {
           System.out.println(buffer);
