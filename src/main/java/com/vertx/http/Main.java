@@ -10,8 +10,17 @@ public class Main
 
   public static void main(String[] args)
   {
-    vertx.deployVerticle(Server.class.getName());
-//    vertx.deployVerticle(Client.class.getName());
+
+    vertx.deployVerticle(FileUploadServer.class.getName()).onComplete(event -> {
+      if (event.succeeded())
+      {
+        System.out.println("Verticle Deployed!");
+      }
+      else
+      {
+        System.out.println("Fail to deploy verticle" + event.cause().getMessage());
+      }
+    });
   }
 
 }

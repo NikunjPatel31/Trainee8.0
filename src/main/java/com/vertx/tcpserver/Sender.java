@@ -14,6 +14,10 @@ public class Sender extends AbstractVerticle
     NetServer server = vertx.createNetServer();
 
     server.connectHandler(socket -> {
+
+      System.out.println("Local Address : " + socket.localAddress());
+      System.out.println("Remote Address : " + socket.remoteAddress());
+
       socket.handler(buffer -> {
         System.out.println("Sender....Received Some Content: " + buffer.length() + "\n");
 
@@ -31,7 +35,7 @@ public class Sender extends AbstractVerticle
       socket.closeHandler(v -> {
         System.out.println("The socket has been closed");
       });
-      
+
     }).listen(8080);
   }
 
