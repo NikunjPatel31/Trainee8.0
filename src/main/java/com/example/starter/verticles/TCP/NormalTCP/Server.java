@@ -15,23 +15,40 @@ public class Server extends AbstractVerticle {
 
         Buffer buf = Buffer.buffer().appendString("This is a message from server");
 
-        socket.write(buf).onComplete(result -> {
-          if (result.succeeded())
-          {
+        socket.handler(message -> {
+          System.out.println("Message from client: "+message.toString());
 
-          }
-          else
-          {
+          socket.write(buf).onComplete(result -> {
+            if (result.succeeded())
+            {
+              System.out.println("Message from server sent");
+              socket.close();
+            }
+            else
+            {
+              System.out.println("Failed to send message from server: "+result.cause().getMessage());
+            }
+          });
 
-          }
+        }).closeHandler(closeHandler -> {
+          System.out.println("Socket is closed.");
         });
 
-        socket.handler(buffer -> {
-          System.out.println(buffer.toString());
-        });
+
+
+//        socket.write(buf).onComplete(result -> {
+//          if (result.succeeded())
+//          {
+//            System.out.println("message is send!");
+//          }
+//          else
+//          {
+//            System.out.println("Error in sending: "+result.cause().getMessage());
+//          }
+//        });
 
       })
-      .listen(0, "localhost", handler ->
+      .listen(9999, "localhost", handler ->
       {
         if (handler.succeeded()) {
           System.out.println("Server is now listening");
@@ -44,9 +61,6 @@ public class Server extends AbstractVerticle {
         }
       });
 
-    startPromise.complete();
-
-//    startPromise.complete();
   }
 
   @Override

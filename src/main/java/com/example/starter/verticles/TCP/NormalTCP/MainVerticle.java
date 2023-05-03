@@ -11,15 +11,25 @@ public class MainVerticle
     vertx.deployVerticle(new Server()).onComplete(handler -> {
 
       if(handler.succeeded()) {
-        System.out.println("pruthvi bc cmc fakir chand");
 
-        System.out.println("pruthvina -400");
+        vertx.deployVerticle(new Client()).onComplete(asyncResult -> {
 
+          if(asyncResult.succeeded()) {
+
+            System.out.println("Client verticle deployed");
+          }
+          else
+          {
+            System.out.println("Client verticle not deployed: "+asyncResult.cause().getMessage());
+          }
+
+        });
+
+        System.out.println("Server verticle deployed");
       } else {
-
-        System.out.println("vedant chutiyo che: "+handler.cause().getMessage());
-
+        System.out.println("Server verticle not deployed: "+handler.cause().getMessage());
       }
+
     });
   }
 }
