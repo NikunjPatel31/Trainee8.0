@@ -1,4 +1,4 @@
-package com.vertx.http;
+package com.vertx.http.simple;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.MultiMap;
@@ -20,7 +20,13 @@ public class FileUploadServer extends AbstractVerticle {
 
       request.uploadHandler(file -> {
         System.out.println("Received Some Chunk Of Data:"+file.filename());
+
+        file.streamToFileSystem("/home/chandresh/Downloads/"+file.filename());
       });
+
+
+
+      request.response().send("Done!");
     }).listen(9090);
   }
 }

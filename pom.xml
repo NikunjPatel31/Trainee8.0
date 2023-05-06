@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.vertx.demo</groupId>
@@ -19,8 +19,10 @@
     <vertx.version>4.4.1</vertx.version>
     <junit-jupiter.version>5.9.1</junit-jupiter.version>
 
-    <main.verticle>com.vertx.demo.MainVerticle</main.verticle>
+    <main.verticle>com.vertx.http.cookie.Client</main.verticle>
     <launcher.class>io.vertx.core.Launcher</launcher.class>
+
+    <!--    <property name="logger-delegate-factory-class-name">io.vertx.core.logging.SLF4JLogDelegateFactory</property>-->
   </properties>
 
   <dependencyManagement>
@@ -58,8 +60,17 @@
       <version>${junit-jupiter.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.30</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.30</version>
+    </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
