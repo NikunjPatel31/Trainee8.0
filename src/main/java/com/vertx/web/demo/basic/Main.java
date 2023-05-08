@@ -7,7 +7,7 @@ public class Main {
 
   public static void main(String[] args) {
 
-    vertx.deployVerticle(ErrorHandling.class.getName()).onComplete(handler -> {
+    vertx.deployVerticle(CookieLessSession.class.getName()).onComplete(handler -> {
       if (handler.succeeded()) {
         System.out.println("Verticle Deployed!");
       } else {

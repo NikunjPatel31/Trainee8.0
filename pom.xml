@@ -67,7 +67,11 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.14.2</version>
     </dependency>
-
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-auth-common</artifactId>
+      <version>4.4.1</version>
+    </dependency>
   </dependencies>
 
   <build>

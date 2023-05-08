@@ -18,7 +18,12 @@ public class ClientAcceptMime extends AbstractVerticle {
 
 //    router.route("/some/path").consumes("application/json").produces("application/json").respond(context -> Future.succeededFuture(new JsonObject().put("msg", "hello-world")));
 
-    router.route("/some/more/path").consumes("application/json").produces("text/plain").produces("application/json").respond(context -> {
+    /*router.route("/some/more/path").consumes("application/json").produces("text/plain").produces("application/json").respond(context -> {
+      System.out.println(context.getAcceptableContentType());
+      return Future.succeededFuture(new JsonObject().put("Hello", "hii")); //whatever it produces, respond adds content-type by the value type in future.
+    });*/
+
+    router.get("/some/more/path").consumes("application/json").produces("text/plain").respond(context -> {
       System.out.println(context.getAcceptableContentType());
       return Future.succeededFuture(new JsonObject().put("Hello", "hii")); //whatever it produces, respond adds content-type by the value type in future.
     });

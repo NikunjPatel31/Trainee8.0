@@ -18,6 +18,14 @@ public class ErrorHandling extends AbstractVerticle {
       throw new RuntimeException();
     });
 
+    /*router.errorHandler(404, context -> {
+      System.out.println(context.statusCode());
+      context.response().setStatusCode(500);
+      System.out.println(context.response().getStatusMessage());
+      context.response().setChunked(true);
+      context.response().end();
+    });*/
+
     router.route().failureHandler(context -> {
       System.out.println(context.statusCode());
     });
